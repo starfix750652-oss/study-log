@@ -25,7 +25,7 @@
 |---|---|---|---|
 | 코드 판단력 부족 | 매일 1시간 | 아직 없음 | 예외처리 |
 
-공부 저장소라 점수는 7주차(평가 단원)부터 생깁니다. 1주차 1~2일차(타입힌트, dataclass)를 끝냈고, 다음은 3일차 예외처리입니다. 문제와 제 답은 [`quiz/week1.md`](quiz/week1.md)에 있습니다.
+공부 저장소라 점수는 7주차(평가 단원)부터 생깁니다. 1주차 1~2일차(타입힌트, dataclass)를 끝냈고, 다음은 3일차 예외처리입니다. 문제와 제 답은 [`quiz/week1.md`](quiz/week1.md), 제가 한 질문은 [`notes/week1-questions.md`](notes/week1-questions.md)에 있습니다. 보기 좋은 버전은 [`week1.html`](week1.html)입니다.
 
 ```mermaid
 flowchart LR
@@ -109,6 +109,8 @@ study-log/
 ├── index.html      공부 지도
 ├── log.md          매일 한 줄 기록
 ├── quiz/          주차별 문제 · 제 답 · 정답
+├── notes/         주차별 제가 한 질문과 생각 변화
+├── week1.html     1주차 생각 노트 (Pages)
 ├── assets/         배너
 ├── evals/          7주차부터
 └── docs/           실패 · 결정 · AI 사용 기록

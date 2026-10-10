@@ -1,5 +1,7 @@
 # 1주차 문제 기록
 
+제가 한 질문과 생각 변화는 [`notes/week1-questions.md`](../notes/week1-questions.md)에 있습니다.
+
 문제는 Claude가 냈고, 채점도 Claude가 했습니다. **자기 채점**이라 점수는 참고용입니다. 정답은 Claude가 코드를 실제로 실행해서 확인했습니다.
 
 표시: ✅ 맞음 · △ 절반 · ❌ 틀림

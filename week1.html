@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1주차 생각 노트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=IBM+Plex+Sans+KR:wght@400;600;700&family=JetBrains+Mono:wght@500&family=Nanum+Pen+Script&display=swap">
+<style>
+/* 오답노트: 종이 한 장에 생각 하나. 빨간 펜은 틀린 곳에만, 형광펜은 결론에만 */
+:root{
+  --bg:#f6f3ec; --paper:#fffdf8; --ink:#1d1b17; --muted:#6b665c; --line:#e3ddcf;
+  --accent:#1f5f4a; --accent-soft:#e3efe9; --pen:#c0392b; --pen-soft:#f8e4e0;
+  --hl:#fbe9a6; --code:#f1ede3;
+  --f-disp:"Gowun Batang",Georgia,serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --f-pen:"Nanum Pen Script","Gowun Batang",cursive;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141412; --paper:#1c1b18; --ink:#ece8df; --muted:#a39d90; --line:#33302a;
+  --accent:#6fc3a3; --accent-soft:#1d2d27; --pen:#f08a7a; --pen-soft:#33201c;
+  --hl:#5a4a14; --code:#24221e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141412; --paper:#1c1b18; --ink:#ece8df; --muted:#a39d90; --line:#33302a;
+  --accent:#6fc3a3; --accent-soft:#1d2d27; --pen:#f08a7a; --pen-soft:#33201c;
+  --hl:#5a4a14; --code:#24221e; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 var(--f-body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:40px 16px 64px;display:grid;gap:44px}
+h1,h2{font-family:var(--f-disp);letter-spacing:-.02em;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,7vw,44px);line-height:1.2}
+h2{font-size:24px}
+.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:700}
+.lede{color:var(--muted);margin:10px 0 0;max-width:60ch}
+mark{background:linear-gradient(transparent 55%,var(--hl) 55%);color:inherit;padding:0 2px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.stat b{display:block;font:600 24px/1.2 var(--f-mono);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+.key{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:8px}
+.key p{margin:0}
+.pen{font-family:var(--f-pen);color:var(--pen);font-size:22px;line-height:1.3}
+section{display:grid;gap:16px}
+.sec-head p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button{font:600 14px var(--f-body);color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:99px;padding:6px 14px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.list{display:grid;gap:12px}
+details{background:var(--paper);border:1px solid var(--line);border-radius:12px}
+summary{list-style:none;cursor:pointer;padding:16px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+summary::-webkit-details-marker{display:none}
+.mk{font:22px/1 var(--f-pen);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:2px solid currentColor}
+.mk.o{color:var(--accent)} .mk.x{color:var(--pen)} .mk.h{color:var(--muted)}
+.qt{min-width:0}
+.qt small{display:block;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.qt strong{display:block;font-weight:600;line-height:1.5}
+.body{padding:0 16px 16px;display:grid;gap:12px;min-width:0}
+pre{margin:0;background:var(--code);border-radius:8px;padding:12px;overflow-x:auto;font:13.5px/1.6 var(--f-mono)}
+code{font-family:var(--f-mono);font-size:.9em}
+.row{display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:baseline}
+.row > span{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.row > div{min-width:0}
+.mine{color:var(--pen);text-decoration:line-through;text-decoration-thickness:1.5px}
+.mine.ok{color:var(--accent);text-decoration:none}
+.ans{font-weight:600}
+.why{background:var(--accent-soft);border-radius:8px;padding:10px 12px;font-size:15px}
+.think{display:grid;gap:10px}
+.step{display:grid;grid-template-columns:72px 1fr;gap:10px}
+.step > span{font-size:12px;font-weight:700;letter-spacing:.04em;padding-top:3px}
+.step > div{min-width:0}
+.s1 > span{color:var(--pen)} .s2 > span{color:var(--accent)} .s3 > span{color:var(--muted)}
+.s1 > div{color:var(--muted)}
+.next{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:14px;display:grid;gap:6px}
+.next p{margin:0}
+@media (max-width:420px){.row,.step{grid-template-columns:1fr;gap:2px}.stat b{font-size:20px}}
+@media (prefers-reduced-motion:no-preference){details[open] .body{animation:in .18s ease-out}@keyframes in{from{opacity:.4;transform:translateY(-3px)}}}
+</style>
+
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <div class="eyebrow">STUDY-LOG · 1주차 · 2026-10-10</div>
+    <h1>1주차 생각 노트</h1>
+    <p class="lede">타입힌트와 dataclass를 이틀 동안 공부하며 푼 문제와, 중간에 제가 던진 질문을 정리했습니다. 무엇을 믿었고, 어디서 틀렸고, 지금은 어떻게 이해하는지 남겼습니다.</p>
+    <div class="stats">
+      <div class="stat"><b>2회</b><span>공부 (하루에 2회)</span></div>
+      <div class="stat"><b>2 / 11</b><span>문제 정답 (자기 채점)</span></div>
+      <div class="stat"><b>9개</b><span>제가 한 질문</span></div>
+    </div>
+  </header>
+
+  <div class="key">
+    <div class="eyebrow">이번 주 결론</div>
+    <p>저는 "파이썬이 알아서 넘어가 주거나 저장해 줄 것"이라고 믿었습니다. 실제로는 <mark>값의 종류는 안 막고, 칸 개수와 문법은 막습니다.</mark></p>
+    <p class="pen">→ 그래서 밖에서 들어오는 값(LLM 응답)은 따로 검사해야 한다</p>
+  </div>
+
+  <section>
+    <div class="sec-head"><h2>제가 한 질문</h2><p>문제를 풀다가 막혀서 물어본 것들입니다. 눌러서 펼치세요.</p></div>
+    <div class="list" id="qs"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>문제와 제 답</h2><p>문제와 채점은 Claude가 했고, 정답은 코드를 실제로 실행해서 확인했습니다.</p></div>
+    <div class="tabs" role="group" aria-label="날짜 선택">
+      <button id="t1" aria-pressed="true" data-d="1">1일차 타입힌트</button>
+      <button id="t2" aria-pressed="false" data-d="2">2일차 dataclass</button>
+    </div>
+    <div class="list" id="ps"></div>
+  </section>
+
+  <footer class="next">
+    <p><b>다음:</b> 3일차 예외처리(<code>try/except</code>). "파이썬이 언제 멈추는가"를 직접 다룹니다.</p>
+    <p>점수는 제가 낸 문제로 매긴 자기 채점이라 실력 측정이 아닙니다. 7주차 평가 단원부터 외부 기준 점수를 붙입니다.</p>
+  </footer>
+</main>
+
+<script>
+const REQ = `from dataclasses import dataclass
+
+@dataclass
+class Req:
+    rel: str    # 관계
+    pack: str   # 분야
+    text: str   # 문장`;
+const FROZEN = `@dataclass(frozen=True)
+class Req:
+    rel: str
+    pack: str
+    text: str
+
+r = Req("반장", "공장", "그거 빨리 옮겨")`;
+
+const QS = [
+ {q:"정규화랑 프롬프트가 정확히 뭐예요?",
+  b:"번역 전에 하는 무언가라고만 막연히 알았습니다.",
+  n:"정규화는 재료 손질입니다. 공백, 반복 기호, 줄임말을 한 모양으로 맞춥니다. 프롬프트는 주문서입니다. 문장과 함께 관계·분야·말투를 보냅니다.",
+  u:"kovi 첫 단계는 <code>norm(text: str) -> str</code> 한 줄로 약속이 보입니다."},
+ {q:"정규화를 100% 하면 싼 LLM으로도 정확해지지 않나요?",
+  b:"입력만 깨끗하면 모델은 상관없다고 생각했습니다.",
+  n:"정규화는 모양만 고칩니다. 주어 생략이나 베트남어 호칭처럼 뜻의 문제는 모델이 판단해야 합니다. 완벽한 정규화는 그 자체로 문맥 이해가 필요하고, 너무 다듬으면 \"빨리!!!!!\"의 급한 느낌 같은 정보가 사라집니다.",
+  u:"라우터: 쉬운 문장은 싼 모델, 어려운 문장은 비싼 모델. 7주차에 ①싼 모델 ②정규화+싼 모델 ③비싼 모델을 비교합니다. 아직 측정하지 않은 가설입니다."},
+ {q:"int라고 적었는데 왜 str을 안 막아요?",
+  b:"타입힌트가 규칙이라고 생각했습니다.",
+  n:"힌트는 메모입니다. 파이썬(1991)보다 힌트(2015, 3.5)가 한참 늦게 들어와서, 옛 코드가 깨지지 않게 선택 사항이 됐습니다. 검사는 mypy가 실행 전에 합니다.",
+  u:"LLM 응답처럼 밖에서 오는 값은 실행 중에 <code>pydantic</code>으로 검사합니다(4~6주차)."},
+ {q:"abab는 그냥 나오는데 Req(\"친구\", \"일상\")은 왜 TypeError예요?",
+  b:"둘 다 타입이 틀린 거라 똑같이 동작할 줄 알았습니다.",
+  n:"파이썬은 칸이 다 찼는지는 세지만, 칸에 든 값의 종류는 안 봅니다. 이름이 같은 TypeError여도 하나는 개수 문제, 하나는 연산 문제입니다.",
+  u:"번역 요청에 문장이 빠지면 LLM까지 가기 전에 맨 앞에서 멈춥니다."},
+ {q:"LLM에서는 Req로 묶는 게 왜 좋아요?",
+  b:"그냥 보기 좋게 묶는 정도라고 생각했습니다.",
+  n:"프롬프트를 한 함수에서 만들고, <code>asdict</code>로 JSON 로그를 남기고, <code>frozen=True</code>로 잠가서 캐시 열쇠로 쓰고, 병렬 후보끼리 서로 오염시키지 않습니다.",
+  u:"공장에서 반복되는 말은 캐시로 LLM 비용을 줄입니다."},
+ {q:"묶어서 넘기면 뭐가 좋은지 자세히 알려 주세요.",
+  b:"타입 오류가 나도 넘어가 주는 게 장점이라고 답했습니다.",
+  n:"그건 파이썬 힌트의 한계일 뿐입니다. 진짜 장점은 칸이 늘어도 클래스 한 줄만 고치면 되고, 이름으로 꺼내서 관계와 분야를 뒤바꾸는 실수를 막는다는 점입니다. 둘 다 str이라 mypy도 이 실수는 못 잡습니다.",
+  u:"\"말투\" 칸이 생기면 Req에 <code>tone: str = \"존댓말\"</code> 한 줄만 추가합니다."},
+ {q:"Req(text=\"친구\", \"상자\")는 에러가 안 나죠?",
+  b:"이름을 붙였으니 괜찮을 거라고 예상했습니다.",
+  n:"SyntaxError입니다. 이름 붙인 값 뒤에 순서로 넣는 값이 올 수 없습니다. 고쳐도 칸이 하나 모자랍니다.",
+  u:"칸이 2~3개를 넘으면 전부 이름으로 넣겠습니다."},
+ {q:"Req 구조가 뭐예요?",
+  b:"코드 모양은 봤지만 무엇인지 몰랐습니다.",
+  n:"클래스는 빈 양식, <code>r = Req(...)</code>는 칸을 채운 서류 한 장입니다. <code>r.text</code>로 칸을 읽습니다.",
+  u:"코드보다 \"어떤 칸이 필요한가\"를 먼저 정합니다."},
+ {q:"Req는 전부 str로 만든, 순서 상관없는 LLM 전용 함수인 거죠?",
+  b:"그렇게 정리하고 이해했다고 생각했습니다.",
+  n:"함수가 아니라 클래스입니다. str이 아닌 칸도 둘 수 있고, 순서로 넣을 때는 순서가 중요합니다. LLM 전용이 아니라 어디서나 쓰는 도구입니다.",
+  u:"경매앱의 물건(주소, 가격, 면적)도 같은 방식으로 묶을 수 있습니다."}
+];
+
+const PS = {1:[
+ {t:"1번 · 무엇이 출력될까?",c:`def add(a: int, b: int) -> int:
+    return a + b
+print(add("3", "4"))`,m:"7",a:"34",r:"x",w:"\"3\"과 \"4\"는 문자라서 +가 이어 붙이기가 됩니다. 파이썬은 실행할 때 힌트를 검사하지 않습니다."},
+ {t:"2번 · 빈칸: 리스트를 받아 가장 긴 문장, 비면 None",c:`def longest(cands: ___) -> ___:`,m:"str, str",a:"list[str], str | None",r:"h",w:"여러 문장을 받으니 리스트이고, 비면 None이 나올 수 있다고 적어야 합니다."},
+ {t:"3번 · 타입힌트를 실제로 검사하는 것은?",m:"디버깅",a:"별도 도구 (mypy, pyright)",r:"x",w:"디버깅은 실행 후 원인 찾기, mypy는 실행 전 검사입니다."},
+ {t:"4번 · longest 몸통 쓰기",m:"모르겠음",a:`if not cands:
+    return None
+return max(cands, key=len)`,r:"x",code:true,w:"max는 가장 큰 값을 찾는 내장 함수이고, key=len을 주면 글자 수 기준으로 찾습니다."}
+],2:[
+ {t:"복습 A · 무엇이 출력될까?",c:`def twice(x: int) -> int:
+    return x * 2
+print(twice("ab"))`,m:"ab에 숫자가 없는데?",a:"abab",r:"x",w:"문자 * 숫자는 반복입니다. 설명을 듣고 이해했습니다."},
+ {t:"복습 B · 실행 전에 타입 실수를 알려 주는 것은?",m:"mypy",a:"mypy",r:"o"},
+ {t:"1번 · 무엇이 출력될까?",c:REQ+`\n\nprint(Req("반장", "공장", "그거 빨리 옮겨"))`,m:"출력",a:"Req(rel='반장', pack='공장', text='그거 빨리 옮겨')",r:"h",w:"@dataclass가 출력 기능(__repr__)을 자동으로 만듭니다."},
+ {t:"2번 · 실행하면 어떻게 될까?",c:REQ+`\n\nReq("친구", "일상")`,m:"출력은 안 되고 저장만 됨",a:"TypeError (text가 빠짐)",r:"x",w:"칸 3개 중 2개만 줘서 만드는 순간 멈춥니다."},
+ {t:"3번 · r.text = \"다른 문장\"을 하면?",c:FROZEN,m:"멈춰서 저장 안 됨",a:"FrozenInstanceError, 값은 그대로",r:"o"},
+ {t:"4번 · Req로 묶어서 넘기면 좋은 점은?",c:REQ,m:"정의를 안 해도 되고 int·str 오류가 나도 넘어감",a:"칸이 늘어도 한 곳만 고치고, 이름으로 꺼내서 순서를 헷갈리지 않음",r:"x",w:"타입 오류를 넘어가는 건 dataclass가 아니라 힌트의 한계입니다."},
+ {t:"추가 · Req(text=\"친구\", \"상자\")는 에러가 안 날까?",c:REQ+`\n\nReq(text="친구", "상자")`,m:"안 남",a:"SyntaxError",r:"x",w:"이름 붙인 값 뒤에 순서로 넣는 값이 올 수 없습니다."}
+]};
+
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MK = {o:"○", x:"✗", h:"△"};
+
+document.getElementById("qs").innerHTML = QS.map((x,i) => `
+<details>
+  <summary><span class="mk h">${i+1}</span><span class="qt"><small>질문</small><strong>${esc(x.q)}</strong></span></summary>
+  <div class="body think">
+    <div class="step s1"><span>처음 생각</span><div>${esc(x.b)}</div></div>
+    <div class="step s2"><span>지금 이해</span><div>${x.n}</div></div>
+    <div class="step s3"><span>쓸 곳</span><div>${x.u}</div></div>
+  </div>
+</details>`).join("");
+
+function showDay(d){
+  document.getElementById("ps").innerHTML = PS[d].map(p => `
+<details>
+  <summary><span class="mk ${p.r}">${MK[p.r]}</span><span class="qt"><small>${p.r==="o"?"맞음":p.r==="h"?"절반":"틀림"}</small><strong>${esc(p.t)}</strong></span></summary>
+  <div class="body">
+    ${p.c?`<pre><code>${esc(p.c)}</code></pre>`:""}
+    <div class="row"><span>제 답</span><div class="mine ${p.r==="o"?"ok":""}">${esc(p.m)}</div></div>
+    <div class="row"><span>정답</span><div>${p.code?`<pre><code>${esc(p.a)}</code></pre>`:`<span class="ans">${esc(p.a)}</span>`}</div></div>
+    ${p.w?`<div class="why">${esc(p.w)}</div>`:""}
+  </div>
+</details>`).join("");
+  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.d==d));
+  try { localStorage.setItem("day", d) } catch(e) {}
+}
+document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => showDay(b.dataset.d));
+let d0 = "1"; try { d0 = localStorage.getItem("day") || "1" } catch(e) {}
+showDay(PS[d0] ? d0 : "1");
+</script>
+
+</body>
+</html>
