@@ -24,7 +24,7 @@
   <img alt="1주차 생각 노트 — 값의 종류는 안 막고, 칸 개수와 문법은 막는다" src="assets/note-week1-light.svg" width="100%">
 </picture></a>
 
-이번 주에 제가 틀렸다가 고친 생각입니다. 카드를 누르면 질문 9개 전체가 나옵니다. 문제와 제 답은 [`quiz/week1.md`](quiz/week1.md)에 있습니다.
+이번 주에 제가 틀렸다가 고친 생각입니다. 카드를 누르면 질문 11개 전체가 나옵니다. 문제와 제 답은 [`quiz/week1.md`](quiz/week1.md)에 있습니다.
 
 ## 한눈에 (At a glance)
 

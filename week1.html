@@ -88,7 +88,7 @@ code{font-family:var(--f-mono);font-size:.9em}
     <div class="stats">
       <div class="stat"><b>2회</b><span>공부 (하루에 2회)</span></div>
       <div class="stat"><b>18 / 42</b><span>문제 정답 (자기 채점)</span></div>
-      <div class="stat"><b>9개</b><span>제가 한 질문</span></div>
+      <div class="stat"><b>11개</b><span>제가 한 질문</span></div>
     </div>
   </header>
 
@@ -174,7 +174,15 @@ const QS = [
  {q:"Req는 전부 str로 만든, 순서 상관없는 LLM 전용 함수인 거죠?",
   b:"그렇게 정리하고 이해했다고 생각했습니다.",
   n:"함수가 아니라 클래스입니다. str이 아닌 칸도 둘 수 있고, 순서로 넣을 때는 순서가 중요합니다. LLM 전용이 아니라 어디서나 쓰는 도구입니다.",
-  u:"경매앱의 물건(주소, 가격, 면적)도 같은 방식으로 묶을 수 있습니다."}
+  u:"경매앱의 물건(주소, 가격, 면적)도 같은 방식으로 묶을 수 있습니다."},
+ {q:"기본값(pack: str = \"일상\")을 자세히 알려 주세요.",
+  b:"칸이 비면 무조건 에러가 난다고 생각했습니다.",
+  n:"기본값이 있는 칸은 비워도 그 값으로 채워집니다. 기본값 있는 칸은 뒤에 와야 하고, 리스트는 <code>field(default_factory=list)</code>로 줍니다.",
+  u:"새 칸(tone)에 기본값을 주면 이미 써 둔 Req 코드가 깨지지 않습니다."},
+ {q:"ValueError와 TypeError는 뭐가 달라요?",
+  b:"둘 다 그냥 \"틀렸다\"는 에러라고 생각했습니다.",
+  n:"TypeError는 종류부터 틀린 것(int([1, 2])), ValueError는 종류는 맞는데 내용이 틀린 것(int(\"3명\"))입니다. JSONDecodeError는 ValueError의 한 종류입니다.",
+  u:"ValueError(사용자 입력, LLM 응답)는 붙잡아 처리하고, TypeError(내 코드 버그)는 고칩니다."}
 ];
 
 const PS = {1:[
