@@ -8,5 +8,5 @@
 <line x1="56" y1="314" x2="844" y2="314" stroke="#33302a" stroke-width="2"/><text x="56" y="368" font-size="30" fill="#f08a7a">✗ <tspan fill="#a39d90" text-decoration="line-through">힌트는 규칙이다</tspan></text>
 <text x="56" y="412" font-size="30" font-weight="700" fill="#ece8df">→ 힌트는 메모, 검사는 mypy</text><text x="56" y="476" font-size="30" fill="#f08a7a">✗ <tspan fill="#a39d90" text-decoration="line-through">정규화 100%면 싼 모델로 충분</tspan></text>
 <text x="56" y="520" font-size="30" font-weight="700" fill="#ece8df">→ 모양만 고친다, 뜻은 모델이 판단</text><text x="56" y="584" font-size="30" fill="#f08a7a">✗ <tspan fill="#a39d90" text-decoration="line-through">Req는 LLM 전용 함수</tspan></text>
-<text x="56" y="628" font-size="30" font-weight="700" fill="#ece8df">→ 어디서나 쓰는 클래스(양식)</text><text x="56" y="716" font-size="26" fill="#a39d90">질문 9개 · 문제 정답 11 / 29 (자기 채점) · 눌러서 전체 보기</text>
+<text x="56" y="628" font-size="30" font-weight="700" fill="#ece8df">→ 어디서나 쓰는 클래스(양식)</text><text x="56" y="716" font-size="26" fill="#a39d90">질문 9개 · 문제 정답 16 / 37 (자기 채점) · 눌러서 전체 보기</text>
 </svg>

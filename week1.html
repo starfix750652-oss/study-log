@@ -87,7 +87,7 @@ code{font-family:var(--f-mono);font-size:.9em}
     <p class="lede">타입힌트와 dataclass를 이틀 동안 공부하며 푼 문제와, 중간에 제가 던진 질문을 정리했습니다. 무엇을 믿었고, 어디서 틀렸고, 지금은 어떻게 이해하는지 남겼습니다.</p>
     <div class="stats">
       <div class="stat"><b>2회</b><span>공부 (하루에 2회)</span></div>
-      <div class="stat"><b>11 / 29</b><span>문제 정답 (자기 채점)</span></div>
+      <div class="stat"><b>16 / 37</b><span>문제 정답 (자기 채점)</span></div>
       <div class="stat"><b>9개</b><span>제가 한 질문</span></div>
     </div>
   </header>
@@ -110,6 +110,7 @@ code{font-family:var(--f-mono);font-size:.9em}
       <button id="t2" aria-pressed="false" data-d="2">2일차 dataclass</button>
       <button id="t3" aria-pressed="false" data-d="3">추가 연습</button>
       <button id="t4" aria-pressed="false" data-d="4">예외처리·JSON</button>
+      <button id="t5" aria-pressed="false" data-d="5">오답 복습</button>
     </div>
     <div class="list" id="ps"></div>
   </section>
@@ -260,6 +261,44 @@ print(d["text"])`,m:"번역 실패",a:"번역 실패",r:"o"},
  {t:"7번 · 출력 / 에러?",c:`import json
 d = json.loads('{"rel": "반장"}')
 print(d["text"])`,m:"출력",a:"KeyError",r:"x",w:"사전에 없는 열쇠(\"text\")를 꺼내면 KeyError가 납니다. LLM이 칸을 빼먹고 답할 때 실제로 나는 에러입니다."}
+],5:[
+ {t:"1번 · 순서대로 무엇이 출력될까?",c:`try:
+    print("A")
+    n = int("열")
+    print("B")
+except ValueError:
+    print("C")
+print("D")`,m:"A C D",a:"A C D",r:"o",w:"지난 회차에 틀린 try 흐름을 이번엔 맞혔습니다."},
+ {t:"2번 · 출력 / 에러?",c:`try:
+    n = int("3명")
+except TypeError:
+    print("잡았다")`,m:"잡았다",a:"ValueError로 멈춤",r:"x",w:"int(\"3명\")은 ValueError입니다. except TypeError는 다른 종류라 붙잡지 못합니다. 같은 실수 두 번째입니다."},
+ {t:"3번 · 무엇이 출력될까?",c:`try:
+    n = int([1, 2])
+except ValueError:
+    print("숫자 아님")
+except TypeError:
+    print("종류가 틀림")`,m:"종류가 틀림",a:"종류가 틀림",r:"o"},
+ {t:"4번 · 무엇이 출력될까?",c:REQ+`\n\nr = Req("친구", "일상", "밥 먹었어?")\nprint(r.rel == "반장")`,m:"false",a:"False",r:"o",w:"마지막 줄을 끝까지 읽었습니다."},
+ {t:"5번 · 무엇이 출력될까?",c:`print(len("12") + 1)`,m:"3",a:"3",r:"o"},
+ {t:"6번 · 무엇이 출력될까?",c:`a = "5"
+b = 5
+print(a * 2, b * 2)`,m:"10, 5*2",a:"55 10",r:"x",w:"a는 따옴표가 있어서 문자라 반복(\"55\"), b는 숫자라 곱하기(10)입니다."},
+ {t:"7번 · 무엇이 출력될까?",c:`import json
+d = json.loads('{"rel": "반장"}')
+try:
+    t = d["text"]
+except KeyError:
+    t = "번역 없음"
+print(t)`,m:"번역 없음",a:"번역 없음",r:"o"},
+ {t:"8번 · 세 줄 출력 (도전)",c:`import json
+for s in ['{"text": "옮겨"}', '{"text": "옮겨"', '{"rel": "반장"}']:
+    try:
+        print(json.loads(s)["text"])
+    except ValueError:
+        print("깨짐")
+    except KeyError:
+        print("빠짐")`,m:"모르겠음",a:"옮겨 / 깨짐 / 빠짐",r:"x",w:"정상 JSON → 옮겨, 괄호 빠짐(JSONDecodeError는 ValueError의 한 종류) → 깨짐, text 칸 없음 → 빠짐."}
 ]};
 
 const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
