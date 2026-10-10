@@ -4,7 +4,7 @@
 </picture>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/%EC%83%81%ED%83%9C-1%EC%A3%BC%EC%B0%A8_%EC%A4%80%EB%B9%84-34d399?style=for-the-badge" alt="상태: 1주차 준비">
+  <img src="https://img.shields.io/badge/%EC%83%81%ED%83%9C-1%EC%A3%BC%EC%B0%A8_%EC%A7%84%ED%96%89-34d399?style=for-the-badge" alt="상태: 1주차 진행">
   <img src="https://img.shields.io/badge/%EC%B8%A1%EC%A0%95%EC%9D%BC-2026--10--10-475569?style=for-the-badge" alt="측정일: 2026-10-10">
 </p>
 
@@ -23,9 +23,9 @@
 
 | 문제 | 방법 | 점수 | 다음 |
 |---|---|---|---|
-| 코드 판단력 부족 | 매일 1시간 | 아직 없음 | 1주차 시작 |
+| 코드 판단력 부족 | 매일 1시간 | 아직 없음 | 예외처리 |
 
-공부 저장소라 점수는 7주차(평가 단원)부터 생깁니다. 다음 할 일은 타입힌트·dataclass로 1주차를 여는 것입니다.
+공부 저장소라 점수는 7주차(평가 단원)부터 생깁니다. 1주차 1~2일차(타입힌트, dataclass)를 끝냈고, 다음은 3일차 예외처리입니다. 문제와 제 답은 [`quiz/week1.md`](quiz/week1.md)에 있습니다.
 
 ```mermaid
 flowchart LR
@@ -59,8 +59,9 @@ flowchart LR
 
 | 항목 | 값 | 날짜 |
 |---|---|---|
-| 진행 주차 | 0 / 12 | 2026-10-10 |
-| 누적 학습일 | 0일 | 2026-10-10 |
+| 진행 주차 | 1 / 12 (2일차까지) | 2026-10-10 |
+| 누적 학습일 | 1일 (2회차) | 2026-10-10 |
+| 1주차 문제 | ✅ 2 · △ 2 · ❌ 7 (자기 채점) | [`quiz/week1.md`](quiz/week1.md) |
 
 ## 3. 실패 로그 요약
 
@@ -107,6 +108,7 @@ flowchart LR
 study-log/
 ├── index.html      공부 지도
 ├── log.md          매일 한 줄 기록
+├── quiz/          주차별 문제 · 제 답 · 정답
 ├── assets/         배너
 ├── evals/          7주차부터
 └── docs/           실패 · 결정 · AI 사용 기록
