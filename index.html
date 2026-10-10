@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2030 취업 공부 지도</title>
+<meta name="description" content="4년 뒤 AI 개발자 취업을 위한 하루 1시간 공부 지도 — 데이터와 전설 직원 4명의 시각으로 정리">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ec; --paper:#fffdf8; --ink:#1d1b17; --muted:#6b665c; --line:#e3ddcf;
+  --accent:#1f5f4a; --accent-soft:#e3efe9; --warn:#b4532a; --warn-soft:#f7e6dc;
+  --gold:#9a7417; --gold-soft:#f4ecd6;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141412; --paper:#1c1b18; --ink:#ece8df; --muted:#a39d90; --line:#33302a;
+    --accent:#6fc3a3; --accent-soft:#1d2d27; --warn:#e8916a; --warn-soft:#2f211a;
+    --gold:#d9b45a; --gold-soft:#2b2618;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141412; --paper:#1c1b18; --ink:#ece8df; --muted:#a39d90; --line:#33302a;
+  --accent:#6fc3a3; --accent-soft:#1d2d27; --warn:#e8916a; --warn-soft:#2f211a;
+  --gold:#d9b45a; --gold-soft:#2b2618;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+a{color:var(--accent)}
+header{padding:56px 0 36px;border-bottom:1px solid var(--line)}
+.kicker{font-size:13px;letter-spacing:.12em;color:var(--accent);font-weight:700}
+h1{font-size:clamp(32px,7vw,54px);line-height:1.15;letter-spacing:-.03em;margin:12px 0 16px;font-weight:800}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{color:var(--muted);font-size:17px;max-width:620px}
+.meta{margin-top:20px;display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:12px;padding:4px 10px;border:1px solid var(--line);border-radius:99px;color:var(--muted);background:var(--paper)}
+section{padding:44px 0;border-bottom:1px solid var(--line)}
+h2{font-size:24px;letter-spacing:-.02em;margin-bottom:6px;font-weight:800}
+.sub{color:var(--muted);font-size:14px;margin-bottom:22px}
+.num{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted);margin-right:8px}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px}
+.stat b{display:block;font-family:"JetBrains Mono",monospace;font-size:30px;letter-spacing:-.02em;line-height:1.1}
+.stat b.up{color:var(--accent)} .stat b.down{color:var(--warn)}
+.stat p{font-size:14px;margin-top:6px}
+.stat small{display:block;color:var(--muted);font-size:12px;margin-top:8px}
+.callout{margin-top:16px;background:var(--gold-soft);border-left:3px solid var(--gold);padding:14px 16px;border-radius:0 10px 10px 0;font-size:15px}
+/* rise/fade */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.col{border-radius:14px;padding:18px;border:1px solid var(--line);background:var(--paper)}
+.col h3{font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.col.up h3{color:var(--accent)} .col.down h3{color:var(--warn)}
+.col li{list-style:none;padding:8px 0;border-top:1px dashed var(--line);font-size:14.5px}
+.col li:first-of-type{border-top:0}
+.col li span{display:block;color:var(--muted);font-size:13px}
+/* staff */
+.staff{display:grid;gap:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;position:relative}
+.who{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:var(--paper);background:var(--accent);flex:none}
+.who b{display:block;font-size:16px}
+.who small{color:var(--muted);font-size:12.5px}
+.quote{font-size:16px;font-weight:600;line-height:1.55;margin-bottom:10px}
+.card p{font-size:14.5px;color:var(--ink)}
+.todo{margin-top:12px;font-size:13.5px;background:var(--accent-soft);color:var(--ink);padding:10px 12px;border-radius:10px}
+.todo b{color:var(--accent)}
+.split{margin-top:16px;padding:16px;border:1px dashed var(--line);border-radius:12px;font-size:14.5px}
+.disc{font-size:12.5px;color:var(--muted);margin-top:12px}
+/* tiers */
+.tier{display:grid;grid-template-columns:86px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+.tier:first-of-type{border-top:0}
+.badge{font-size:12px;font-weight:800;padding:6px 0;text-align:center;border-radius:8px;height:fit-content}
+.t1{background:var(--accent);color:var(--paper)} .t2{background:var(--accent-soft);color:var(--accent)} .t3{background:var(--gold-soft);color:var(--gold)} .t0{background:var(--warn-soft);color:var(--warn)}
+.tier h4{font-size:16px;margin-bottom:4px}
+.tier p{font-size:14px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tag{font-family:"JetBrains Mono",monospace;font-size:11.5px;padding:3px 8px;border-radius:6px;background:var(--bg);border:1px solid var(--line)}
+/* timeline */
+.tl{position:relative;padding-left:26px}
+.tl:before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.yr{position:relative;padding-bottom:26px}
+.yr:before{content:"";position:absolute;left:-25px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--accent)}
+.yr.now:before{background:var(--accent)}
+.yr h4{font-size:17px}
+.yr .when{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--accent);font-weight:700}
+.yr p{font-size:14.5px;color:var(--muted);margin-top:4px}
+.yr .out{font-size:13.5px;margin-top:8px;color:var(--ink)}
+.yr .out b{color:var(--accent)}
+/* weeks */
+.prog{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.bar{flex:1;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.prog span{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted);min-width:52px;text-align:right}
+.phase{background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.phase summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.phase summary::-webkit-details-marker{display:none}
+.phase summary small{color:var(--muted);font-weight:500;font-size:13px}
+.phase .why{padding:0 18px 10px;font-size:13.5px;color:var(--muted)}
+.wk{display:flex;gap:12px;align-items:flex-start;padding:12px 18px;border-top:1px solid var(--line);cursor:pointer}
+.wk input{margin-top:4px;width:18px;height:18px;accent-color:var(--accent);flex:none}
+.wk b{font-size:14.5px;display:block}
+.wk span{font-size:13px;color:var(--muted)}
+.wk.done b{text-decoration:line-through;color:var(--muted)}
+/* daily */
+.day{display:flex;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin-bottom:12px}
+.day div{padding:14px 12px;font-size:13.5px}
+.day div b{display:block;font-family:"JetBrains Mono",monospace;font-size:18px}
+.d1{flex:10;background:var(--gold-soft)} .d2{flex:35;background:var(--accent-soft)} .d3{flex:15;background:var(--warn-soft)}
+.check li{list-style:none;padding:10px 0;border-top:1px solid var(--line);font-size:14.5px;display:flex;gap:10px}
+.check li:first-child{border-top:0}
+.check li i{font-style:normal;flex:none}
+footer{padding:36px 0 60px;font-size:13px;color:var(--muted)}
+footer ol{padding-left:18px;margin-top:8px}
+footer li{margin:4px 0}
+.theme{position:fixed;top:14px;right:14px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:99px;padding:6px 12px;font:inherit;font-size:12px;cursor:pointer}
+@media (max-width:640px){
+  .stats,.cols{grid-template-columns:1fr}
+  .tier{grid-template-columns:1fr;gap:8px}
+  .badge{width:72px}
+  header{padding-top:64px}
+}
+</style>
+</head>
+<body>
+<button class="theme" id="theme" aria-label="테마 전환">◐ 테마</button>
+<div class="wrap">
+
+<header>
+  <div class="kicker">STUDY-LOG · 2026 → 2030</div>
+  <h1>4년 뒤, 나는<br><em>어떤 개발자</em>로 뽑힐까</h1>
+  <p class="lede">채용 데이터와 전설 직원 4명의 시각으로 "무엇이 커지고 무엇이 줄어드는지"를 보고, 하루 1시간 공부를 거꾸로 설계한 지도.</p>
+  <div class="meta">
+    <span class="chip">작성 2026.10.10</span>
+    <span class="chip">하루 1시간 · 주 5일</span>
+    <span class="chip">목표 시점 2030</span>
+  </div>
+</header>
+
+<section>
+  <h2><span class="num">01</span>지금 시장은 이렇다</h2>
+  <p class="sub">숫자는 모두 원 출처 기준. 4년 뒤 숫자가 아니라 "방향"을 읽는 용도.</p>
+  <div class="stats">
+    <div class="stat"><b class="up">+70%</b><p>국내 'AI' 키워드 채용공고 증가 (전체 공고는 +10%)</p><small>잡코리아 2026.1~5월, 잡플래닛 기사 인용</small></div>
+    <div class="stat"><b class="up">+80%</b><p>그중 신입 대상 'AI' 공고 증가</p><small>같은 출처</small></div>
+    <div class="stat"><b class="down">+0.2%</b><p>국내 SW 인력 증가율 — 매출은 늘었는데 사람은 거의 안 늘었다</p><small>SPRi 2025 SW산업 실태조사, 2026.8 발표</small></div>
+    <div class="stat"><b class="down">2.5%</b><p>미국 AI 엔지니어 공고 중 "경력 0~2년"을 요구한 비율</p><small>365 Data Science, Glassdoor 공고 903건 분석 · 경력 조건을 적은 공고는 33%</small></div>
+  </div>
+  <div class="callout"><b>읽는 법.</b> AI 공고는 늘지만, 그 자리는 "아무것도 안 해본 신입"이 아니라 <b>AI로 실제 문제를 풀어본 사람</b>에게 간다. 기아는 신입 채용에 AI 문제해결력 검증을, 넥슨은 인턴 코딩테스트 대신 AI 활용 역량평가를 넣었다.</div>
+</section>
+
+<section>
+  <h2><span class="num">02</span>커지는 것 vs 줄어드는 것</h2>
+  <p class="sub">위 데이터를 바탕으로 한 <b>추론</b>이다. 확정된 미래가 아님.</p>
+  <div class="cols">
+    <div class="col up">
+      <h3>▲ 가치가 커지는 능력</h3>
+      <ul>
+        <li>AI 결과를 검증하는 능력<span>평가셋, 실패 로그, 자동 채점 — 데모와 실서비스의 차이</span></li>
+        <li>파이프라인·에이전트 설계<span>여러 모델·도구를 묶고, 느리거나 틀린 걸 걸러내는 구조</span></li>
+        <li>도메인 + AI 조합<span>현장, 번역, 경매처럼 교재로 못 배우는 영역</span></li>
+        <li>데이터 다루기<span>SQL, 정제, 데이터 파이프라인 (AI 엔지니어 공고 11.6%)</span></li>
+        <li>보안·운영 기본기<span>국내 신입 개발 공고 1위 직무군 28.3%</span></li>
+      </ul>
+    </div>
+    <div class="col down">
+      <h3>▼ 그것만으론 부족해지는 것</h3>
+      <ul>
+        <li>문법·API 암기<span>AI가 가장 먼저 대신하는 부분</span></li>
+        <li>단순 CRUD 구현<span>"만들 줄 안다"만으로는 차별화가 안 됨</span></li>
+        <li>코딩테스트 단독 준비<span>평가 방식 자체가 AI 활용형으로 바뀌는 중</span></li>
+        <li>특정 프레임워크 사용법<span>LangChain 언급은 AI 공고의 10.7%뿐 — 유행은 바뀐다</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">03</span>전설 직원 4명의 판단</h2>
+  <p class="sub">각 인물의 공개 발언을 바탕으로 추론한 것이고, 본인의 의견은 아닙니다.</p>
+  <div class="staff">
+    <div class="card">
+      <div class="who"><div class="av">AK</div><div><b>안드레이 카파시</b><small>전 테슬라 AI 총괄 · AI 공부·활용</small></div></div>
+      <div class="quote">"데모로 90%까지는 누구나 간다. 뽑히는 사람은 99.9%로 끌어올리는 사람이다."</div>
+      <p>꼬리 쪽 실패, 그러니까 가장 어려운 5% 사례에서 시스템이 어떻게 무너지는지 아는 게 실력이다. 그리고 하나는 처음부터 직접 만들어 봐라. 직접 못 만들면 이해한 게 아니다.</p>
+      <div class="todo"><b>공부로 옮기면</b> → evals를 최우선으로. 3년차엔 작은 신경망을 라이브러리 없이 200줄로 직접 구현.</div>
+    </div>
+    <div class="card">
+      <div class="who"><div class="av" style="background:var(--gold)">IS</div><div><b>일리야 수츠케버</b><small>오픈AI 공동창업자 · AI의 미래</small></div></div>
+      <div class="quote">"4년 뒤 어떤 모델이 이길지는 나도 말 못 한다. 하지만 모델이 계속 좋아진다는 방향은 확실하다."</div>
+      <p>그러니 특정 모델의 사용법에 베팅하지 마라. 모델이 바뀌어도 남는 것, 즉 좋은 데이터와 좋은 평가 기준에 베팅해라. 벤치마크 점수와 현실 사이에는 아직 아무도 다 이해하지 못한 틈이 있다.</p>
+      <div class="todo"><b>공부로 옮기면</b> → kovi의 LLM 백엔드를 갈아끼울 수 있게 설계한 건 옳다. 평가셋을 자산으로 키울 것.</div>
+    </div>
+    <div class="card">
+      <div class="who"><div class="av" style="background:var(--warn)">ZX</div><div><b>장쉐펑</b><small>진로 컨설턴트 · 직업 선택</small></div></div>
+      <div class="quote">"데이터부터 봐라. AI 공고는 늘었는데 경력 0~2년으로 명시한 공고는 2.5%뿐이다."</div>
+      <p>신입 자리로 들어가려고 하지 말고 '경력 같은 신입'이 돼라. 4년 동안 실제로 돌아가는 결과물과 기록을 쌓으면 그게 경력이다. 그리고 먼저 물어보자. 전공이 뭐고, 학위는 어디까지 있나? 미국 AI 공고의 약 75%가 학위 수준을 적는다. 이게 전략을 완전히 바꾼다.</p>
+      <div class="todo"><b>공부로 옮기면</b> → 결과물은 숫자로 증명. 전공·학위는 <b>[확인 필요]</b> — 답에 따라 학위 보완 여부를 다시 판단.</div>
+    </div>
+    <div class="card">
+      <div class="who"><div class="av" style="background:#5a4a8a">NR</div><div><b>나발 라비칸트</b><small>엔젤리스트 창업자 · 커리어·레버리지</small></div></div>
+      <div class="quote">"코드는 누구의 허락도 필요 없는 레버리지다."</div>
+      <p>공무원이라 지금 사업을 못 한다고? 공개 저장소에 4년 쌓인 기록은 허락 없이 할 수 있다. 한국어·베트남어 현장 문제 + AI + 검증 습관. 이 조합은 누가 교재로 가르칠 수 없는 특정 지식이다.</p>
+      <div class="todo"><b>공부로 옮기면</b> → 매일 커밋. 배운 건 반드시 kovi·경매앱에 적용해 연결 기록 남기기.</div>
+    </div>
+  </div>
+  <div class="split"><b>갈리는 지점.</b> 장쉐펑은 학력 같은 "간판"을 무시하지 말라고 하고, 나발은 허락 없이 쌓는 기록이 간판을 이긴다고 본다. 둘 다 맞을 수 있다 — 그래서 학위 상황 확인이 첫 번째 할 일이다.</div>
+</section>
+
+<section>
+  <h2><span class="num">04</span>공부 우선순위</h2>
+  <p class="sub">하루 1시간은 적다. 그래서 "안 할 것"을 정하는 게 더 중요하다.</p>
+  <div class="tier"><div class="badge t1">1순위·매일</div><div><h4>Python + LLM 파이프라인 + 평가(evals)</h4><p>네 사람 모두가 가리킨 공통분모. 국내 기업은 Python·LLM 이해를 "기본값"으로 본다.</p><div class="tags"><span class="tag">asyncio</span><span class="tag">pydantic</span><span class="tag">pytest</span><span class="tag">sacrebleu</span><span class="tag">COMET(wmt22-da)</span></div></div></div>
+  <div class="tier"><div class="badge t2">2순위</div><div><h4>데이터 · 배포 · git</h4><p>만든 걸 남이 쓸 수 있게 하는 능력. 경매앱 데이터 처리에 바로 쓰인다.</p><div class="tags"><span class="tag">SQL</span><span class="tag">pandas</span><span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag">git</span></div></div></div>
+  <div class="tier"><div class="badge t3">3순위</div><div><h4>딥러닝 기초를 손으로</h4><p>YOLO 전이학습 경험을 "왜 되는지"까지 끌어올리기. PyTorch는 AI 공고 37.7%로 프레임워크 1위.</p><div class="tags"><span class="tag">PyTorch</span><span class="tag">직접 구현</span><span class="tag">파인튜닝</span></div></div></div>
+  <div class="tier"><div class="badge t0">안 할 것</div><div><h4>유행 프레임워크 쫓기 · 자격증 수집 · 강의만 보기</h4><p>카파시 식으로 말하면 "읽기만 하는 건 공부가 아니라 오락"이다. 상업 불가 라이선스(예: CometKiwi)도 처음부터 배제.</p></div></div>
+</section>
+
+<section>
+  <h2><span class="num">05</span>4년 타임라인</h2>
+  <p class="sub">해마다 하나의 질문에 답하고, 그 답을 결과물로 남긴다.</p>
+  <div class="tl">
+    <div class="yr now"><div class="when">1년차 · 2026.10 – 2027.09</div><h4>기초 체력 + 검증 습관</h4><p>아래 12주 로드맵으로 시작. 이후 kovi에 평가셋·실패 로그를 붙인다.</p><div class="out"><b>결과물</b> kovi evals v1, 학습로그 꾸준히</div></div>
+    <div class="yr"><div class="when">2년차 · 2027 – 2028</div><h4>남이 쓸 수 있게</h4><p>번역 API 배포, 경매앱 데이터 파이프라인, SQL 숙달.</p><div class="out"><b>결과물</b> 실제로 돌아가는 서비스 1개 + 사용 기록</div></div>
+    <div class="yr"><div class="when">3년차 · 2028 – 2029</div><h4>왜 되는지까지</h4><p>PyTorch로 작은 모델 직접 구현·학습, 상업 라이선스 모델 파인튜닝, 오픈소스 기여 1건.</p><div class="out"><b>결과물</b> 직접 구현 저장소 + 기여 PR</div></div>
+    <div class="yr"><div class="when">4년차 · 2029 – 2030</div><h4>증명하고 지원하기</h4><p>포트폴리오 정리(실패→개선 수치), AI 활용 역량평가형 면접 대비.</p><div class="out"><b>결과물</b> "틀린 기록과 고친 기록"이 담긴 포트폴리오</div></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">06</span>첫 12주 체크리스트</h2>
+  <p class="sub">체크한 내용은 이 브라우저에만 저장된다.</p>
+  <div class="prog"><div class="bar"><i id="bar"></i></div><span id="pct">0/12</span></div>
+  <div id="weeks"></div>
+</section>
+
+<section>
+  <h2><span class="num">07</span>하루 1시간 사용법</h2>
+  <p class="sub">주말: 토요일은 그 주 배운 걸 프로젝트에 붙이기, 일요일은 쉬거나 밀린 것만.</p>
+  <div class="day">
+    <div class="d1"><b>10′</b>복습</div>
+    <div class="d2"><b>35′</b>새 개념 + 작은 코드</div>
+    <div class="d3"><b>15′</b>적용·기록</div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">08</span>편향 점검</h2>
+  <p class="sub">이 지도를 믿기 전에 알아둘 한계.</p>
+  <ul class="check">
+    <li><i>⚠️</i><span>미국 공고 수치(365 Data Science)는 한국 시장과 다를 수 있다. 국내 수치는 잡플래닛·SPRi 기준.</span></li>
+    <li><i>⚠️</i><span>"커지는 것/줄어드는 것"은 데이터에서 내린 추론이다. 4년 뒤를 예측한 숫자는 없다.</span></li>
+    <li><i>⚠️</i><span>현재 실력은 테스트하지 않았다. 1주차가 쉬우면 바로 건너뛸 것.</span></li>
+    <li><i>❓</i><span>전공·학위·희망 직무(회사 vs 공공)를 모른다. 이 답에 따라 계획이 바뀐다.</span></li>
+    <li><i>🔁</i><span>매년 10월, 같은 출처로 숫자를 다시 확인하고 이 페이지를 고친다.</span></li>
+  </ul>
+</section>
+
+<footer>
+  <b>출처</b>
+  <ol>
+    <li><a href="https://www.jobplanet.co.kr/contents/news-8452">잡플래닛, 2026 하반기 신입 개발자 취업 현실과 전략은? (2026.09.10)</a> — 잡코리아·SPRi 수치 인용</li>
+    <li><a href="https://365datascience.com/career-advice/career-guides/ai-engineer-job-outlook-2025/">365 Data Science, AI Engineer Job Outlook 2026</a></li>
+  </ol>
+  <p style="margin-top:14px">인물 판단은 legend-staff 스킬(alchaincyf/nuwa-skill, MIT)로 추론한 것. 작성에 Claude를 사용했다 — 자세한 내용은 docs/ai-usage.md.</p>
+</footer>
+</div>
+
+<script>
+const W=[
+ ["1단계 · 파이썬 체력","1~3주","환경 충돌로 고생했던 경험 → 환경 관리부터. kovi 각 단계는 입력·출력이 정해진 함수라 이게 단단해야 갈아끼울 수 있다.",[
+  ["타입힌트 · dataclass · 예외처리","함수 입력/출력을 명확하게"],
+  ["JSON 읽고 쓰기 · uv 가상환경","패키지 충돌을 원천 차단"],
+  ["git 브랜치 · pytest 첫 테스트","함수 하나라도 테스트로 증명"]]],
+ ["2단계 · LLM 앱 핵심","4~6주","kovi의 '병렬 후보 → 느린 건 버림' 설계를 직접 구현할 수 있게.",[
+  ["httpx로 API 호출 · 재시도 · 타임아웃","실패를 전제로 짜는 습관"],
+  ["asyncio 병렬 실행 · wait(timeout)","여러 파이프라인 동시 실행"],
+  ["pydantic으로 LLM 출력 구조화","자유 텍스트 대신 검증 가능한 형태"]]],
+ ["3단계 · 평가(evals)","7~9주","검수자 응답 없이도 도는 1차 평가 장치. 포트폴리오의 핵심.",[
+  ["평가셋 만들기 (사투리·주어 생략 포함)","입력·기대값·위험등급·태그"],
+  ["chrF(sacrebleu) · COMET(wmt22-da) 자동 채점","둘 다 상업 이용 가능 라이선스"],
+  ["LLM-as-judge와 자기채점 편향 · 실패 로그","failures.md 형식으로 기록"]]],
+ ["4단계 · 서비스로 묶기","10~12주","만든 걸 남이 쓸 수 있게.",[
+  ["FastAPI로 번역 API","엔드포인트 하나부터"],
+  ["SQLite 기록 저장 · Docker 기초","어디서든 같은 환경"],
+  ["Claude Code가 짠 Kotlin 읽기","경매앱 코드 리뷰 능력"]]]
+];
+const K="studylog-weeks-v1";
+let st={};
+try{st=JSON.parse(localStorage.getItem(K))||{}}catch(e){st={}}
+const box=document.getElementById("weeks");
+let n=0;
+W.forEach((p,pi)=>{
+  const d=document.createElement("details");
+  d.className="phase"; if(pi===0)d.open=true;
+  d.innerHTML=`<summary>${p[0]}<small>${p[1]}</small></summary><div class="why">${p[2]}</div>`;
+  p[3].forEach(w=>{
+    n++; const id="w"+n;
+    const l=document.createElement("label");
+    l.className="wk"+(st[id]?" done":"");
+    l.innerHTML=`<input type="checkbox" ${st[id]?"checked":""}><div><b>${n}주차 · ${w[0]}</b><span>${w[1]}</span></div>`;
+    l.querySelector("input").addEventListener("change",e=>{
+      st[id]=e.target.checked; l.classList.toggle("done",e.target.checked);
+      try{localStorage.setItem(K,JSON.stringify(st))}catch(err){}
+      sync();
+    });
+    d.appendChild(l);
+  });
+  box.appendChild(d);
+});
+function sync(){
+  const c=Object.values(st).filter(Boolean).length;
+  document.getElementById("bar").style.width=(c/n*100)+"%";
+  document.getElementById("pct").textContent=c+"/"+n;
+}
+sync();
+const r=document.documentElement;
+document.getElementById("theme").onclick=()=>{
+  const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+  r.dataset.theme=dark?"light":"dark";
+};
+</script>
+</body>
+</html>
