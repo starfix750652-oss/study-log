@@ -19,6 +19,13 @@
 
 공부 지도는 [`index.html`](index.html)에 있습니다. GitHub Pages로 열면 주차별 체크리스트가 동작합니다.
 
+<a href="notes/week1-questions.md"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/note-week1-dark.svg">
+  <img alt="1주차 생각 노트 — 값의 종류는 안 막고, 칸 개수와 문법은 막는다" src="assets/note-week1-light.svg" width="100%">
+</picture></a>
+
+이번 주에 제가 틀렸다가 고친 생각입니다. 카드를 누르면 질문 9개 전체가 나옵니다. 문제와 제 답은 [`quiz/week1.md`](quiz/week1.md)에 있습니다.
+
 ## 한눈에 (At a glance)
 
 | 문제 | 방법 | 점수 | 다음 |

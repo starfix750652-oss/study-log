@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="750" viewBox="0 0 900 750" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+<rect x="1" y="1" width="898" height="748" rx="22" fill="#fffdf8" stroke="#e3ddcf" stroke-width="2"/>
+<text x="56" y="84" font-size="26" font-weight="700" fill="#1f5f4a" letter-spacing="2">1주차 생각 노트 · 2026-10-10</text>
+<text x="56" y="152" font-size="46" font-weight="800" fill="#1d1b17">값의 종류는 안 막고,</text>
+<rect x="52" y="182" width="560" height="26" fill="#fbe9a6"/>
+<text x="56" y="210" font-size="46" font-weight="800" fill="#1d1b17">칸 개수와 문법은 막는다.</text>
+<text x="56" y="272" font-size="32" font-weight="700" fill="#c0392b">→ 그래서 LLM 응답은 따로 검사한다</text>
+<line x1="56" y1="314" x2="844" y2="314" stroke="#e3ddcf" stroke-width="2"/><text x="56" y="368" font-size="30" fill="#c0392b">✗ <tspan fill="#6b665c" text-decoration="line-through">힌트는 규칙이다</tspan></text>
+<text x="56" y="412" font-size="30" font-weight="700" fill="#1d1b17">→ 힌트는 메모, 검사는 mypy</text><text x="56" y="476" font-size="30" fill="#c0392b">✗ <tspan fill="#6b665c" text-decoration="line-through">정규화 100%면 싼 모델로 충분</tspan></text>
+<text x="56" y="520" font-size="30" font-weight="700" fill="#1d1b17">→ 모양만 고친다, 뜻은 모델이 판단</text><text x="56" y="584" font-size="30" fill="#c0392b">✗ <tspan fill="#6b665c" text-decoration="line-through">Req는 LLM 전용 함수</tspan></text>
+<text x="56" y="628" font-size="30" font-weight="700" fill="#1d1b17">→ 어디서나 쓰는 클래스(양식)</text><text x="56" y="716" font-size="26" fill="#6b665c">질문 9개 · 문제 정답 6 / 19 (자기 채점) · 눌러서 전체 보기</text>
+</svg>
