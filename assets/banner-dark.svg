@@ -6,7 +6,7 @@
 <text x="56" y="176" font-size="28" font-weight="700" fill="#f1f5f9">프로젝트에서 막힌 곳을 매일 1시간씩 메운 기록.</text>
 <text x="56" y="210" font-size="20" fill="#94a3b8">배운 것을 실제 프로젝트에 붙인 흔적과 틀린 기록까지 남깁니다</text><rect x="56" y="244" width="376" height="96" rx="14" fill="#1e293b" stroke="#334155"/>
 <rect x="56" y="244" width="5" height="96" rx="2" fill="#34d399"/>
-<text x="82" y="290" font-size="36" font-weight="800" fill="#f1f5f9">0 / 12</text>
+<text x="82" y="290" font-size="36" font-weight="800" fill="#f1f5f9">1 / 12</text>
 <text x="82" y="324" font-size="21" font-weight="600" fill="#94a3b8">진행 주차</text><rect x="448" y="244" width="376" height="96" rx="14" fill="#1e293b" stroke="#334155"/>
 <rect x="448" y="244" width="5" height="96" rx="2" fill="#fbbf24"/>
 <text x="474" y="290" font-size="36" font-weight="800" fill="#f1f5f9">1시간</text>
