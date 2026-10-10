@@ -87,7 +87,7 @@ code{font-family:var(--f-mono);font-size:.9em}
     <p class="lede">타입힌트와 dataclass를 이틀 동안 공부하며 푼 문제와, 중간에 제가 던진 질문을 정리했습니다. 무엇을 믿었고, 어디서 틀렸고, 지금은 어떻게 이해하는지 남겼습니다.</p>
     <div class="stats">
       <div class="stat"><b>2회</b><span>공부 (하루에 2회)</span></div>
-      <div class="stat"><b>6 / 19</b><span>문제 정답 (자기 채점)</span></div>
+      <div class="stat"><b>11 / 29</b><span>문제 정답 (자기 채점)</span></div>
       <div class="stat"><b>9개</b><span>제가 한 질문</span></div>
     </div>
   </header>
@@ -109,6 +109,7 @@ code{font-family:var(--f-mono);font-size:.9em}
       <button id="t1" aria-pressed="true" data-d="1">1일차 타입힌트</button>
       <button id="t2" aria-pressed="false" data-d="2">2일차 dataclass</button>
       <button id="t3" aria-pressed="false" data-d="3">추가 연습</button>
+      <button id="t4" aria-pressed="false" data-d="4">예외처리·JSON</button>
     </div>
     <div class="list" id="ps"></div>
   </section>
@@ -217,6 +218,48 @@ print(Req("친구"))`,m:"에러",a:"Req(rel='친구', pack='일상', text='')",r
 class Req:
     pack: str = "일상"
     text: str`,m:"됨",a:"TypeError (기본값 없는 칸이 기본값 있는 칸 뒤에 옴)",r:"x",w:"Req(text=\"친구\", \"상자\")와 같은 규칙입니다. 기본값 없는 칸이 먼저 와야 합니다."}
+],4:[
+ {t:"복습 R1 · 출력 / 에러?",c:`def greet(name: str) -> str:
+    return "안녕 " + name
+print(greet("3"))`,m:"에러",a:"안녕 3",r:"x",w:"\"3\"은 따옴표가 있어서 문자입니다. 문자 + 문자라 문제없습니다. 지난번 실수를 피하려다 반대로 틀렸습니다."},
+ {t:"복습 R2 · 출력 / 에러?",c:`@dataclass
+class Req:
+    rel: str
+    pack: str = "공장"
+    text: str = ""
+
+print(Req("반장", text="옮겨"))`,m:"출력",a:"Req(rel='반장', pack='공장', text='옮겨')",r:"o"},
+ {t:"복습 R3 · 클래스 만들기가 될까?",c:`@dataclass
+class Req:
+    rel: str = "친구"
+    pack: str`,m:"pack 때문에 에러",a:"TypeError",r:"o"},
+ {t:"1번 · 무엇이 출력될까?",c:`try:
+    n = int("3명")
+    print("변환 성공")
+except ValueError:
+    print("숫자 아님")`,m:"변환 성공 / 숫자 아님",a:"숫자 아님",r:"x",w:"int(\"3명\")에서 에러가 나는 순간 try 안의 남은 줄은 건너뜁니다."},
+ {t:"2번 · 무엇이 출력될까?",c:`try:
+    n = int("7")
+    print(n + 1)
+except ValueError:
+    print("숫자 아님")`,m:"8",a:"8",r:"o"},
+ {t:"3번 · 출력 / 에러?",c:`try:
+    print("안녕 " + 3)
+except ValueError:
+    print("잡았다")`,m:"잡았다",a:"TypeError로 멈춤",r:"x",w:"문자 + 숫자는 TypeError입니다. except ValueError는 다른 종류라 붙잡지 못합니다."},
+ {t:"4번 · 무엇이 출력될까?",c:REQ+`\n\ntry:\n    r = Req("친구", "일상")\nexcept TypeError:\n    r = Req("친구", "일상", "")\nprint(r.text == "")`,m:"친구 일상 \"\" \"\"",a:"True",r:"x",w:"마지막 줄은 r.text가 빈 문자인지 비교한 결과(True/False)만 출력합니다. 앞 단계 흐름은 맞게 따라갔습니다."},
+ {t:"5번 · 무엇이 출력될까?",c:`import json
+d = json.loads('{"rel": "반장", "text": "옮겨"}')
+print(d["text"])`,m:"옮겨",a:"옮겨",r:"o"},
+ {t:"6번 · 무엇이 출력될까?",c:`import json
+try:
+    d = json.loads('{"text": "옮겨"')
+except json.JSONDecodeError:
+    d = {"text": "번역 실패"}
+print(d["text"])`,m:"번역 실패",a:"번역 실패",r:"o"},
+ {t:"7번 · 출력 / 에러?",c:`import json
+d = json.loads('{"rel": "반장"}')
+print(d["text"])`,m:"출력",a:"KeyError",r:"x",w:"사전에 없는 열쇠(\"text\")를 꺼내면 KeyError가 납니다. LLM이 칸을 빼먹고 답할 때 실제로 나는 에러입니다."}
 ]};
 
 const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
