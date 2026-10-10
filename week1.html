@@ -87,7 +87,7 @@ code{font-family:var(--f-mono);font-size:.9em}
     <p class="lede">타입힌트와 dataclass를 이틀 동안 공부하며 푼 문제와, 중간에 제가 던진 질문을 정리했습니다. 무엇을 믿었고, 어디서 틀렸고, 지금은 어떻게 이해하는지 남겼습니다.</p>
     <div class="stats">
       <div class="stat"><b>2회</b><span>공부 (하루에 2회)</span></div>
-      <div class="stat"><b>2 / 11</b><span>문제 정답 (자기 채점)</span></div>
+      <div class="stat"><b>6 / 19</b><span>문제 정답 (자기 채점)</span></div>
       <div class="stat"><b>9개</b><span>제가 한 질문</span></div>
     </div>
   </header>
@@ -108,6 +108,7 @@ code{font-family:var(--f-mono);font-size:.9em}
     <div class="tabs" role="group" aria-label="날짜 선택">
       <button id="t1" aria-pressed="true" data-d="1">1일차 타입힌트</button>
       <button id="t2" aria-pressed="false" data-d="2">2일차 dataclass</button>
+      <button id="t3" aria-pressed="false" data-d="3">추가 연습</button>
     </div>
     <div class="list" id="ps"></div>
   </section>
@@ -192,6 +193,30 @@ print(twice("ab"))`,m:"ab에 숫자가 없는데?",a:"abab",r:"x",w:"문자 * �
  {t:"3번 · r.text = \"다른 문장\"을 하면?",c:FROZEN,m:"멈춰서 저장 안 됨",a:"FrozenInstanceError, 값은 그대로",r:"o"},
  {t:"4번 · Req로 묶어서 넘기면 좋은 점은?",c:REQ,m:"정의를 안 해도 되고 int·str 오류가 나도 넘어감",a:"칸이 늘어도 한 곳만 고치고, 이름으로 꺼내서 순서를 헷갈리지 않음",r:"x",w:"타입 오류를 넘어가는 건 dataclass가 아니라 힌트의 한계입니다."},
  {t:"추가 · Req(text=\"친구\", \"상자\")는 에러가 안 날까?",c:REQ+`\n\nReq(text="친구", "상자")`,m:"안 남",a:"SyntaxError",r:"x",w:"이름 붙인 값 뒤에 순서로 넣는 값이 올 수 없습니다."}
+],3:[
+ {t:"1번 · 출력 / 에러?",c:`def greet(name: str) -> str:
+    return "안녕 " + name
+print(greet(3))`,m:"안녕 3",a:"TypeError",r:"x",w:"문자 + 숫자는 파이썬이 계산할 방법이 없습니다. 2번(문자 + 문자)은 되고 이건 안 되는 이유는 힌트가 아니라 실제 연산 때문입니다."},
+ {t:"2번 · 출력 / 에러?",c:`def double(x: int) -> int:
+    return x + x
+print(double("하"))`,m:"하하",a:"하하",r:"o"},
+ {t:"3번 · 출력 / 에러?",c:`def pick(cands: list[str]) -> str:
+    return cands[0]
+print(pick("안녕"))`,m:"안",a:"안",r:"o"},
+ {t:"4번 · 출력 / 에러?",c:`@dataclass
+class Req:
+    rel: str
+    pack: str = "일상"
+    text: str = ""
+
+print(Req("친구"))`,m:"에러",a:"Req(rel='친구', pack='일상', text='')",r:"x",w:"기본값이 있는 칸은 비워도 그 값으로 채워집니다."},
+ {t:"5번 · 출력 / 에러?",c:REQ+`\n\nr = Req(text="밥 먹었어?", rel="친구", pack="일상")\nprint(r.pack)`,m:"친구 일상 밥먹었어?",a:"일상",r:"x",w:"r.pack은 pack 칸 하나만 꺼냅니다."},
+ {t:"6번 · 출력 / 에러?",c:REQ+`\n\nReq("친구", "일상", "밥", "추가")`,m:"에러",a:"TypeError (칸 3개에 값 4개)",r:"o"},
+ {t:"7번 · 출력 / 에러?",c:REQ+`\n\na = Req("친구", "일상", "밥 먹었어?")\nb = Req("친구", "일상", "밥 먹었어?")\nprint(a == b)`,m:"yes",a:"True",r:"o",w:"뜻은 맞습니다. 파이썬은 True로 출력합니다. @dataclass가 비교 기능(__eq__)을 만들어 줍니다."},
+ {t:"8번 · 클래스 만들기가 될까?",c:`@dataclass
+class Req:
+    pack: str = "일상"
+    text: str`,m:"됨",a:"TypeError (기본값 없는 칸이 기본값 있는 칸 뒤에 옴)",r:"x",w:"Req(text=\"친구\", \"상자\")와 같은 규칙입니다. 기본값 없는 칸이 먼저 와야 합니다."}
 ]};
 
 const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
