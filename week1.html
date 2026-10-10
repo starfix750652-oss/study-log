@@ -87,7 +87,7 @@ code{font-family:var(--f-mono);font-size:.9em}
     <p class="lede">타입힌트와 dataclass를 이틀 동안 공부하며 푼 문제와, 중간에 제가 던진 질문을 정리했습니다. 무엇을 믿었고, 어디서 틀렸고, 지금은 어떻게 이해하는지 남겼습니다.</p>
     <div class="stats">
       <div class="stat"><b>2회</b><span>공부 (하루에 2회)</span></div>
-      <div class="stat"><b>16 / 37</b><span>문제 정답 (자기 채점)</span></div>
+      <div class="stat"><b>18 / 42</b><span>문제 정답 (자기 채점)</span></div>
       <div class="stat"><b>9개</b><span>제가 한 질문</span></div>
     </div>
   </header>
@@ -111,6 +111,7 @@ code{font-family:var(--f-mono);font-size:.9em}
       <button id="t3" aria-pressed="false" data-d="3">추가 연습</button>
       <button id="t4" aria-pressed="false" data-d="4">예외처리·JSON</button>
       <button id="t5" aria-pressed="false" data-d="5">오답 복습</button>
+      <button id="t6" aria-pressed="false" data-d="6">집중 5문제</button>
     </div>
     <div class="list" id="ps"></div>
   </section>
@@ -299,6 +300,27 @@ for s in ['{"text": "옮겨"}', '{"text": "옮겨"', '{"rel": "반장"}']:
         print("깨짐")
     except KeyError:
         print("빠짐")`,m:"모르겠음",a:"옮겨 / 깨짐 / 빠짐",r:"x",w:"정상 JSON → 옮겨, 괄호 빠짐(JSONDecodeError는 ValueError의 한 종류) → 깨짐, text 칸 없음 → 빠짐."}
+],6:[
+ {t:"1번 · 무엇이 출력될까?",c:`x = "3"
+y = 3
+print(x + x, y + y)`,m:"33 6",a:"33 6",r:"o",w:"따옴표 보기를 고쳤습니다."},
+ {t:"2번 · 출력 / 에러?",c:`try:
+    print("값: " + 7)
+except TypeError:
+    print("잡았다")`,m:"값 7",a:"잡았다",r:"x",w:"문자 + 숫자는 자동으로 붙지 않고 TypeError가 납니다. except TypeError가 그걸 잡습니다."},
+ {t:"3번 · 무엇이 출력될까?",c:`try:
+    n = int("7.5")
+except TypeError:
+    print("A")
+except ValueError:
+    print("B")`,m:"A",a:"B",r:"x",w:"\"7.5\"는 글자라 종류는 맞고, 내용이 정수 모양이 아니라 ValueError입니다."},
+ {t:"4번 · 무엇이 출력될까?",c:`n = "2"
+print(int(n) * 3, n * 3)`,m:"6 222",a:"6 222",r:"o"},
+ {t:"5번 · 무엇이 출력될까? (도전)",c:`try:
+    t = "개수: " + len("밥")
+except ValueError:
+    print("잡았다")
+print("끝")`,m:"개수 1 끝",a:"TypeError로 멈춤 (끝도 안 찍힘)",r:"x",w:"len(\"밥\")은 숫자 1이라 문자 + 숫자 → TypeError. except ValueError는 못 잡고 프로그램이 멈춰서 끝까지 가지 못합니다."}
 ]};
 
 const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
